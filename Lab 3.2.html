@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Frameset</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      font-family: Arial, sans-serif;
+    }
+    header {
+      height: 100px;
+      background: #007bff;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .main {
+      flex: 1;
+      display: flex;
+    }
+    nav {
+      width: 200px;
+      border-right: 2px solid #ccc;
+    }
+    nav iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    section {
+      flex: 1;
+    }
+    section iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h2> Website Header</h2>
+  </header>
+  <div class="main">
+    <nav>
+      <iframe srcdoc="
+        <h3>Navigation</h3>
+        <ul style='list-style:none; padding:0; font-family:Arial;'>
+          <li><a href='#home' onclick=&quot;parent.loadContent('home')&quot;>Home</a></li>
+          <li><a href='#about' onclick=&quot;parent.loadContent('about')&quot;>About</a></li>
+          <li><a href='#contact' onclick=&quot;parent.loadContent('contact')&quot;>Contact</a></li>
+        </ul>
+      "></iframe>
+    </nav>
+    <section>
+      <iframe id="contentFrame" srcdoc="
+        <h2>Welcome</h2>
+        <p>This is the main content area. Click links in the navigation bar to load different pages here.</p>
+      "></iframe>
+    </section>
+  </div>
+
+  <script>
+    function loadContent(page) {
+      let content = '';
+      if (page === 'home') {
+        content = '<h2>Welcome</h2><p>This is the home page.</p>';
+      } else if (page === 'about') {
+        content = '<h2>About Us</h2><p>This is the About page content.</p>';
+      } else if (page === 'contact') {
+        content = '<h2>Contact Us</h2><p>You can reach us at <a href=&quot;mailto:info@example.com&quot;>info@example.com</a>.</p>';
+      }
+      document.getElementById('contentFrame').srcdoc = content;
+    }
+  </script>
+</body>
+</html>
