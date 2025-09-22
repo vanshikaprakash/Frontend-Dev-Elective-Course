@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>World Map Hotspots</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 40px;
+            background-color: #f0f8ff;
+        }
+        h2 {
+            color: #1a5276;
+        }
+        #info-box {
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #b3d9ff;
+            background-color: #e6f3ff;
+            border-radius: 8px;
+            display: none;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            text-align: left;
+        }
+        #info-box h3 {
+            color: #004d99;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Click on the continents to learn more!</h2>
+    <p>This image map highlights two continents. Click to see information about them.</p>
+
+    <img src="world_map.jpg" alt="A simple world map" usemap="#world_map" width="800" height="400">
+
+    <map name="world_map">
+
+        <area shape="poly" coords="120,80, 150,50, 200,60, 250,120, 220,160, 180,180, 140,160, 100,120, 120,80" alt="North America" href="#" onclick="showInfo('north_america')">
+
+        <area shape="poly" coords="450,80, 480,70, 520,90, 550,130, 500,160, 470,140, 440,110, 450,80" alt="Europe" href="#" onclick="showInfo('europe')">
+
+    </map>
+
+    <div id="info-box"></div>
+
+    <script>
+        function showInfo(region) {
+            const infoBox = document.getElementById('info-box');
+            let content = '';
+
+            if (region === 'north_america') {
+                content = '<h3>North America</h3><p>North America is the third-largest continent by area and includes countries like the United States, Canada, and Mexico. It is known for its diverse climates and vast landscapes, from arctic tundra to tropical jungles.</p>';
+            } else if (region === 'europe') {
+                content = '<h3>Europe</h3><p>Europe is a continent located entirely in the Northern Hemisphere. It is known for its rich history, distinct cultures, and major global influence. It is home to countries like France, Germany, the United Kingdom, and Italy.</p>';
+            }
+
+            infoBox.innerHTML = content;
+            infoBox.style.display = 'block'; // Show the information box
+        }
+    </script>
+
+</body>
+</html>
